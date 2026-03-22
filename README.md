@@ -1,6 +1,6 @@
 # ASC.Solution
 
-## 👨‍🎓 Thông tin sinh viên
+## 👨‍🎓 Thông tin nhóm sinh viên
 - **Họ tên:** Nguyễn Văn Hùng  
 - **MSSV:** 2324802010234
 - **Họ tên:** Lâm Hoàng Đông  
