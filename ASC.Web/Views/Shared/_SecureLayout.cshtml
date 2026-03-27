@@ -1,85 +1,38 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+@using ASC.Utilities
+@using ASC.Web.Data
+@* Lay thong tin user dang nhap *@
+@inject IHttpContextAccessor UserHttpContext
+@* Lay menu *@
+@inject INavigationCacheOperations navigationCache
+@{
     Layout = "_MasterLayout";
+    var currentUser = UserHttpContext.HttpContext.User.GetCurrentUserDetails();
 }
-
 <!-- Header -->
 <header class="secureLayout">
     <nav class="top-nav blue-grey lighten-1">
         <div class="nav-wrapper row valign-wrapper">
             <div class="col s12 valign-wrapper">
-                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#" data-target="nav-mobile" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
                 <h5><a class="page-title">Automobile Service Center</a></h5>
             </div>
         </div>
     </nav>
-
+    <!-- Side NavBar -->
     <!-- Side NavBar -->
     <ul id="nav-mobile" class="sidenav sidenav-fixed">
         <li>
             <div class="user-view">
                 <div class="background blue-grey lighten-1"></div>
                 <a href="#!user"><img class="circle" src="~/images/male.png"></a>
-                <a href="#!name"><span class="white-text name">John Doe</span></a>
-                <a href="#!email"><span class="white-text email">jdandtunK@gmail.com</span></a>
+                <a href="#!name"><span class="white-text name">@currentUser.Name</span></a>
+                <a href="#!email"><span class="white-text email">@currentUser.Email</span></a>
             </div>
         </li>
-        <li>
-            <a class="collapsible-header" href="#!">
-                <i class="material-icons">dashboard</i>
-                Dashboard
-            </a>
-        </li>
-        <li>
-            <ul class="collapsible collapsible-accordion">
-                <li>
-                    <a class="collapsible-header">User Administration <i class="material-icons">supervisor_account</i></a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <a href="#!">Customers<i class="material-icons">account_box</i></a>
-                            </li>
-                            <li>
-                                <a href="#!">Provision User<i class="material-icons">person_add</i></a>
-                            </li>
-                            <li>
-                                <a href="#!">Deactivate User<i class="material-icons">remove_circle</i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a class="collapsible-header" href="#!">
-                <i class="material-icons">
-                    perm_data_setting
-                </i>Service Requests
-            </a>
-        </li>
-        <li>
-            <a class="collapsible-header" href="#!">
-                <i class="material-icons">message</i>
-                Service Notifications
-            </a>
-        </li>
-        <li>
-            <a class="collapsible-header" href="#!">
-                <i class="material-icons">inbox</i>
-                Promotions
-            </a>
-        </li>
-        <li>
-            <a class="collapsible-header" href="#!">
-                <i class="material-icons">settings</i>
-                Settings
-            </a>
-        </li>
-        <li>
-            <a class="collapsible-header" href="#!">
-                <i class="material-icons">exit_to_app</i>
-                Logout
-            </a>
-        </li>
+        @await Component.InvokeAsync("ASC.Web.Navigation.LeftNavigation", await navigationCache.GetNavigationCacheAsync())
     </ul>
 </header>
 
@@ -133,3 +86,30 @@
         </div>
     </div>
 </footer>
+
+<form class="hide" method="post" id="logout_form" asp-area="Identity" asp-page="/Account/Logout">
+    <input type="submit" value="Logout" />
+</form>
+
+<form class="hide" method="post" id="resetPassword_form" action="/Identity/Account/InitiateResetPassword">
+    @Html.AntiForgeryToken()
+</form>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+    <script type="text/javascript">
+        $(function () {
+            $('#ancrLogout').click(function () {
+                $('#logout_form').submit();
+            });
+            $('#ancrResetPassword').click(function () {
+                $('#resetPassword_form').submit();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.collapsible').collapsible();
+        });
+    </script>
+}
