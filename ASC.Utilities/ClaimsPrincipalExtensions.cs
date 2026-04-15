@@ -6,15 +6,22 @@ namespace ASC.Utilities
     {
         public static CurrentUser GetCurrentUserDetails(this ClaimsPrincipal principal)
         {
-            if (!principal.Claims.Any())
+            if (principal == null || !principal.Claims.Any())
                 return null;
+
+            var name = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+            var email = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            var isActiveValue = principal.Claims.FirstOrDefault(c => c.Type == "IsActive")?.Value;
+
+            bool isActive = false;
+            bool.TryParse(isActiveValue, out isActive);
 
             return new CurrentUser
             {
-                Name = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name).Value,
-                Email = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value,
+                Name = name ?? email ?? "User",
+                Email = email ?? string.Empty,
                 Roles = principal.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToArray(),
-                IsActive = Boolean.Parse(principal.Claims.Where(c => c.Type == "IsActive").Select(c => c.Value).SingleOrDefault()),
+                IsActive = isActive
             };
         }
     }
