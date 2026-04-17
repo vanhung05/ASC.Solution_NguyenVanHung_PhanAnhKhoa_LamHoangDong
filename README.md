@@ -22,3 +22,6 @@ https://jumpshare.com/share/iDGsdErkjOSQ4yzVD3mr
 
 ### ▶️LAB 7 - 8
 https://jumpshare.com/share/FMszNbG5G4VTX14V2cmJ
+
+### ▶️LAB 9
+https://youtu.be/dTJ3Eagx5xo?si=UXRgeWkTm_K5CMxW
