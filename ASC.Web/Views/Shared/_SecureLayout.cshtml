@@ -110,6 +110,18 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.collapsible').collapsible();
+
+            // Auto-expand menu con tương ứng với trang hiện tại
+            var currentPath = window.location.pathname.toLowerCase();
+            $('.collapsible-body a').each(function () {
+                var href = $(this).attr('href');
+                if (href && currentPath.indexOf(href.toLowerCase()) !== -1) {
+                    // Tìm collapsible-header cha và trigger active
+                    var collapsibleLi = $(this).closest('li.active, li').parents('.collapsible').closest('li');
+                    var header = $(this).closest('.collapsible').find('.collapsible-header');
+                    $(this).closest('.collapsible').collapsible('open', 0);
+                }
+            });
         });
     </script>
 }
