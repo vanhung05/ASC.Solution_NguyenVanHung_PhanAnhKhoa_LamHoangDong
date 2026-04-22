@@ -25,3 +25,6 @@ https://jumpshare.com/share/FMszNbG5G4VTX14V2cmJ
 
 ### ▶️LAB 9
 https://youtu.be/dTJ3Eagx5xo?si=UXRgeWkTm_K5CMxW
+
+### ▶️LAB 10
+https://youtu.be/blsLD3spMRI?si=eX6Onf4CNkkUYEWG
