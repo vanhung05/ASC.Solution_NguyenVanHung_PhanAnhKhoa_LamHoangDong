@@ -1,10 +1,33 @@
-﻿@{
+﻿@model ASC.Web.Areas.ServiceRequests.Models.DashboardViewModel
+@using ASC.Model.BaseTypes
+@{
     Layout = "_SecureLayout";
 }
-<div class="section">
-    <div class="row">
-        <div class="col s12 m4" style="height: 500px;">
-            Content Page will be displayed here.
-        </div>
-    </div>
-</div>
+
+<div class="row"></div>
+@await Html.PartialAsync("_ServiceRequestGrid", Model.ServiceRequests,
+    new ViewDataDictionary(ViewData)
+    {
+        { "SectionName", "Service Requests" },
+        { "Id", "tblServiceRequests" },
+        { "IsAudit", false }
+    }
+)
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            // Initialize DataTable to show list of Service Requests
+            var table = $('#tblServiceRequests').DataTable({
+                'pageLength': 3,
+                // Number of records to be displayed per page
+                'lengthMenu': [[3, 5, 10, -1], [3, 5, 10, 'All']],
+                // Remove default Sorting
+                'sorting': [],
+                'columns': [{ "visible": false }, { "visible": false }, null, { "width":"20%" }, null, null, null]});
+            // Set Styles for DataTable and Number of Records to be displayed dropdown
+            $('.tblServiceRequests').css("width", "100%");
+            $('select[name$="ServiceRequests_length"]').material_select();
+        });
+    </script>
+}

@@ -7,21 +7,22 @@
     <UserSecretsId>aspnet-ASC.Web-1d9c960e-4652-4c28-94e2-6a6d511a3714</UserSecretsId>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="10.1.1" />
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-		<PackageReference Include="EPPlus" Version="7.7.3" />
-		<PackageReference Include="MailKit" Version="4.15.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.25" />
-		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.25" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.25" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.25" />
-		<PackageReference Include="Microsoft.AspNetCore.Session" Version="2.3.9" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.23" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.25" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.25" />
-		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.23" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="EPPlus" Version="7.7.3" />
+    <PackageReference Include="MailKit" Version="4.15.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.3.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.23" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.25" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.23" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Configuration\Data\" />

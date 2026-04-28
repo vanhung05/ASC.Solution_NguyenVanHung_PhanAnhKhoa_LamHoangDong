@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ASC.Web.Areas.Configuration.Models
 {
@@ -7,7 +7,8 @@ namespace ASC.Web.Areas.Configuration.Models
         public string? RowKey { get; set; }
         public string? PartitionKey { get; set; }
         public bool IsActive { get; set; }
-        [Required]
-        public string Name { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Name is required.")]
+        public string? Name { get; set; }
     }
 }

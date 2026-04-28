@@ -1,12 +1,11 @@
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using System.Collections.Generic;
 
 namespace ASC.Web.Areas.Configuration.Models
 {
     public class MasterKeysViewModel
     {
-        [ValidateNever]
         public List<MasterDataKeyViewModel>? MasterKeys { get; set; }
-        public MasterDataKeyViewModel? MasterKeyInContext { get; set; }
+        public MasterDataKeyViewModel MasterKeyInContext { get; set; } = new MasterDataKeyViewModel();
         public bool IsEdit { get; set; }
     }
 }

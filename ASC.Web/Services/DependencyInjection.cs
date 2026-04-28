@@ -1,4 +1,5 @@
-﻿using ASC.Business.Interfaces;
+﻿using ASC.Business;
+using ASC.Business.Interfaces;
 using ASC.DataAccess;
 using ASC.Solution.Services;
 using ASC.Web.Configuration;
@@ -60,19 +61,28 @@ namespace ASC.Web.Services
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddDistributedMemoryCache();
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = config["CacheSettings:CacheConnectionString"];
+                options.InstanceName = config["CacheSettings:CacheInstance"];
+            });
+
             services.AddSingleton<INavigationCacheOperations, NavigationCacheOperations>();
+            services.AddScoped<IMasterDataCacheOperations, MasterDataCacheOperations>();
+            services.AddScoped<IServiceRequestOperations, ServiceRequestOperations>();
 
             // Add RazorPages, MVC
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews();
 
-            // Add MasterDataOperations 
+            //Add MasterDataOperations
             services.AddScoped<IMasterDataOperations, MasterDataOperations>();
-            services.AddAutoMapper(typeof(ApplicationDbContext));    
+            services.AddAutoMapper(typeof(ApplicationDbContext));
+            //
 
             return services;
+
         }
     }
 }
